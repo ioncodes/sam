@@ -1,6 +1,5 @@
 # sam
 [![Foo](https://img.shields.io/crates/v/sam.svg)](https://crates.io/crates/sam)  
-Compile time instruction assembler for Rust.
 
 ## What is this?
 I'm currently working on many assembly related projects. Most of them are written in Rust.
