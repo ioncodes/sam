@@ -3,6 +3,7 @@ name = "sam"
 version = "1.0.0"
 authors = ["Luca Marcelli <ionix@protonmail.com>"]
 description = "A compile time instruction assembler."
+repository = "https://github.com/ioncodes/sam"
 license = "MIT"
 
 [dependencies]
