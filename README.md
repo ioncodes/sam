@@ -1,4 +1,5 @@
 # sam
+![sam](https://img.shields.io/crates/v/sam.svg)  
 Compile time instruction assembler for Rust.
 
 ## What is this?
