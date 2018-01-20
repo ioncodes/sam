@@ -1,11 +1,12 @@
 extern crate reqwest;
 
+pub use self::reqwest::Client;
+
 #[macro_export]
 macro_rules! sam {
     ($e:expr) => {
         {
-            pub use ::reqwest;
-            let client = reqwest::Client::new();
+            let client = Client::new();
             let mut res = client.post("http://localhost:1337/asm")
                 .body($e)
                 .send()
