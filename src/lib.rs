@@ -6,7 +6,7 @@ pub use self::reqwest::Client;
 macro_rules! sam {
     ($e:expr) => {
         {
-            let client = Client::new();
+            let client = $crate::Client::new();
             let mut res = client.post("http://localhost:1337/asm")
                 .body($e)
                 .send()
