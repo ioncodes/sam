@@ -23,7 +23,7 @@ Just start amber when you're using the plugin.
 ## Usage
 You can use the plugin as follows:  
 ```rust
-#![macro_use]
+#[macro_use]
 extern crate sam;
 
 fn main() {
