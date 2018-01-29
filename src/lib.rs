@@ -4,11 +4,11 @@ pub use self::reqwest::Client;
 
 #[macro_export]
 macro_rules! sam {
-    ($e:expr) => {
+    (x64 => $e:expr) => {
         {
             let client = $crate::Client::new();
             let mut res = client.post("http://localhost:1337/asm")
-                .body($e)
+                .body(stringify!($e))
                 .send()
                 .unwrap();
             let body = res.text().unwrap();

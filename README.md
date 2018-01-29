@@ -27,13 +27,13 @@ You can use the plugin as follows:
 extern crate sam;
 
 fn main() {
-  let v = sam!("
+  let v = sam!(x64 =>
     mov eax, 3
     mov ebx, 0
     mov ecx, 1337
     mov edx, 1
     int 0x80
-  ");
+  );
   println!("{:?}", v);
 }
 ```
