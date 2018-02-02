@@ -10,7 +10,6 @@ macro_rules! sam {
                 if a.trim().is_empty() {
                     continue;
                 }
-                println!("{:?}", a);
                 let output = if cfg!(target_os = "windows") {
                         super::Command::new("cmd")
                             .args(&["/C", "kstool", "x64nasm", &a])
@@ -26,7 +25,6 @@ macro_rules! sam {
                             .expect("failed to execute process")
                 };
                 let result = &String::from_utf8(output.stdout).unwrap();
-                println!("{:?}", result);
                 let mut temp: Vec<&str> = result.split("[ ").collect();
                 temp = temp[1].split(" ]").collect();
                 let out = temp[0];
