@@ -7,4 +7,4 @@ repository = "https://github.com/ioncodes/sam"
 license = "MIT"
 
 [dependencies]
-reqwest = "0.8.2"
+keystone = "*"
