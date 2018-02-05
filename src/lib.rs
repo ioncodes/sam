@@ -22,7 +22,6 @@ macro_rules! sam {
                             .expect("failed to execute process")
                 };
                 let result = &String::from_utf8(output.stdout).unwrap();
-                println!("{:?}", result);
                 let mut temp: Vec<&str> = result.split("[ ").collect();
                 temp = temp[1].split(" ]").collect();
                 let out = temp[0];
