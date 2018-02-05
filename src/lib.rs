@@ -16,20 +16,22 @@ macro_rules! sam {
                             .output()
                             .expect("failed to execute process")
                     } else {
-                        $crate::Command::new("sh")
-                            .arg("-c")
-                            .arg("kstool")
-                            .arg("x64nasm")
-                            .arg(&a)
+                        $crate::Command::new("kstool")
+                            .args(&["x64nasm", &a])
                             .output()
                             .expect("failed to execute process")
                 };
                 let result = &String::from_utf8(output.stdout).unwrap();
+                println!("{:?}", result);
                 let mut temp: Vec<&str> = result.split("[ ").collect();
                 temp = temp[1].split(" ]").collect();
                 let out = temp[0];
-                for opcode in out.split(" ") {
-                    asm.push(u8::from_str_radix(&opcode, 16).unwrap());
+                if out.contains(" ") {
+                    for opcode in out.split(" ") {
+                        asm.push(u8::from_str_radix(&opcode, 16).unwrap());
+                    }
+                } else {
+                    asm.push(u8::from_str_radix(&out, 16).unwrap());
                 }
             }
             asm
