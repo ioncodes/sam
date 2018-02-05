@@ -1,4 +1,4 @@
-use std::process::Command;
+pub use std::process::Command;
 
 #[macro_export]
 macro_rules! sam {
