@@ -50,10 +50,10 @@ pub fn assemble(mode: Mode, arg: &str) -> Vec<u8> {
 #[macro_export]
 macro_rules! sam {
     (x64 => $e:expr) => {{
-        ::assemble(::Mode::X64, $e)
+        $crate::assemble($crate::Mode::X64, $e)
     }};
     (x86 => $e:expr) => {{
-        ::assemble(::Mode::X86, $e)
+        $crate::assemble($crate::Mode::X86, $e)
     }};
 }
 
