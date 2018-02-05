@@ -1,7 +1,5 @@
 #![feature(test)]
 
-extern crate test;
-
 pub mod mode;
 
 pub use std::process::Command;
@@ -59,7 +57,9 @@ macro_rules! sam {
 
 #[cfg(test)]
 mod tests {
-    use test::Bencher;
+    extern crate test;
+
+    use self::test::Bencher;
 
     #[test]
     fn x64() {
