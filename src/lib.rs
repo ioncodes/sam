@@ -11,12 +11,12 @@ macro_rules! sam {
                     continue;
                 }
                 let output = if cfg!(target_os = "windows") {
-                        super::Command::new("cmd")
+                        $crate::Command::new("cmd")
                             .args(&["/C", "kstool", "x64nasm", &a])
                             .output()
                             .expect("failed to execute process")
                     } else {
-                        super::Command::new("sh")
+                        $crate::Command::new("sh")
                             .arg("-c")
                             .arg("kstool")
                             .arg("x64nasm")
@@ -41,10 +41,12 @@ macro_rules! sam {
 mod tests {
     #[test]
     fn x64() {
-        let asm = sam!("
+        let asm = sam!(
+            "
             mov rax, 0x1337
             ret
-        ");
+        "
+        );
         assert_eq!(asm, vec![0x48, 0xC7, 0xC0, 0x37, 0x13, 0x00, 0x00, 0xC3]);
     }
 }
