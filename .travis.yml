@@ -1,10 +1,11 @@
 language: rust
 rust:
-  - stable
-  - beta
-  - nightly
+- stable
+- beta
+- nightly
 script:
-  - sudo env "PATH=$PATH" cargo build --verbose --all
-  - export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-  - kstool
-  - cargo test --verbose --all
+- sudo env "PATH=$PATH" cargo build --verbose --all
+- export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
+- sudo env "PATH=$PATH" cargo test --verbose --all
+notifications:
+  slack: nanowaris:AYwA3oA75Srq3fb51XNe0PYB
