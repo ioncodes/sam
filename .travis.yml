@@ -7,7 +7,6 @@ os:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install cmake; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install cmake; fi
   - git clone https://github.com/keystone-engine/keystone.git
   - cd keystone && mkdir build && cd build && ../make-share.sh
