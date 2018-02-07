@@ -11,7 +11,20 @@ Therefore I decided to make a macro which utilizes kstool to create the opcodes 
 **TLDR** This is a macro which converts an assembly string to a ```Vec<u8>``` at compile time.
 
 ## Setup
-Compile Keystone and make sure 'kstool' is in your PATH.
+If you're Windows user, you can just skip this part, because everything is done via Powershell.  
+If you're on Mac OS X make sure Homebrew is installed!  
+If you're on Linux you have to run ```cargo build``` as root user (```sudo```). To do that you have to use this command:  
+```bash
+sudo env "PATH=$PATH" cargo build
+```
+
+On Linux and Mac OS X, the script will install these dependencies:
+* CMake
+* Git
+
+Keep in mind that you only need to do these steps if you're running it for the first time.  After successfully installing the dependencies the script will clone Keystone, build it and install it. On Windows, the script will just download prebuilt binaries.  
+
+You can also do all of this manually, just make sure that ```kstool``` is available in your PATH!
 
 ## Modes
 Supported modes are (all with NASM syntax):
