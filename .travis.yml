@@ -13,7 +13,7 @@ script:
   - cd keystone && mkdir build && cd build && ../make-share.sh
   - sudo make install
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/
-  - sudo ldconfig
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ldconfig; fi
   - cargo build --verbose --all
   - cargo test --verbose --all
 notifications:
