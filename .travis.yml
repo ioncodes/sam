@@ -1,7 +1,5 @@
 language: rust
 rust:
-- stable
-- beta
 - nightly
 script:
 - sudo apt-get install cmake
@@ -12,10 +10,5 @@ script:
 - sudo ldconfig
 - cargo build --verbose --all
 - cargo test --verbose --all
-matrix:
-  allow_failures:
-    - rust: 
-      - stable
-      - beta
 notifications:
   slack: nanowaris:AYwA3oA75Srq3fb51XNe0PYB
