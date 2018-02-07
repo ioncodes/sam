@@ -21,6 +21,7 @@ fn check_sudo() {
     if !is_sudo { panic!("You have to run this as root!"); }
 }
 
+#[cfg(target_os = "macos")]
 fn check_dependencies() {
     if !check_cmd("brew") { panic!("Homebrew not found!"); }
     if !check_cmd("cmake") { 
@@ -31,6 +32,22 @@ fn check_dependencies() {
     }
     if !check_cmd("git") { 
         Command::new("brew")
+            .args(&["install", "git"])
+            .output()
+            .expect("failed to execute process");
+    }
+}
+
+#[cfg(target_os = "linux")]
+fn check_dependencies() {
+    if !check_cmd("cmake") { 
+        Command::new("apt-get")
+            .args(&["install", "cmake"])
+            .output()
+            .expect("failed to execute process");
+    }
+    if !check_cmd("git") { 
+        Command::new("apt-get")
             .args(&["install", "git"])
             .output()
             .expect("failed to execute process");
@@ -103,7 +120,7 @@ fn download_kstool() {
 fn main() {
     if !check_cmd("kstool") {
         if cfg!(target_os = "linux") { check_sudo(); }
-        if cfg!(target_os = "macos") { check_dependencies(); }
+        if cfg!(target_os = "macos") || cfg!(target_os = "linux") { check_dependencies(); }
         download_kstool();
     }
 }
