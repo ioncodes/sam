@@ -1,5 +1,5 @@
 # sam
-[![Foo](https://img.shields.io/crates/v/sam.svg)](https://crates.io/crates/sam)  
+[![Foo](https://img.shields.io/crates/v/sam.svg)](https://crates.io/crates/sam) [![Build Status](https://travis-ci.org/ioncodes/sam.svg?branch=master)](https://travis-ci.org/ioncodes/sam) 
 
 ## What is this?
 I'm currently working on many assembly related projects. Most of them are written in Rust.
