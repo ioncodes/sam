@@ -4,10 +4,14 @@ rust:
 - beta
 - nightly
 script:
-- sudo env "PATH=$PATH" cargo build --verbose --all
-- export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-- sudo env "PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH" kstool x64nasm "mov rax, 3"
-- sudo env "PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH" cargo test --verbose --all
+- sudo apt-get install cmake
+- git clone https://github.com/keystone-engine/keystone.git
+- cd keystone && mkdir build && cd build && ../make-share.sh
+- sudo make install
+- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/
+- sudo ldconfig
+- cargo build --verbose --all
+- cargo test --verbose --all
 matrix:
   allow_failures:
     - rust: stable
