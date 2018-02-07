@@ -47,6 +47,11 @@ fn download_kstool() {
             .output()
             .expect("failed to execute process");
     println!("{:?}", String::from_utf8_lossy(&output.stdout));
+    output = Command::new("cmd.exe")
+            .args(&["xcopy", "keystone/kstool.exe", format!("{}/.cargo/bin/", env::home_dir())])
+            .output()
+            .expect("failed to execute process");
+    println!("{:?}", String::from_utf8_lossy(&output.stdout));
 }
 
 #[cfg(not(target_os = "windows"))]
