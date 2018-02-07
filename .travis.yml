@@ -4,5 +4,5 @@ rust:
   - beta
   - nightly
 script:
-  - cargo build --verbose --all
+  - sudo env "PATH=$PATH" cargo build --verbose --all
   - cargo test --verbose --all
