@@ -1,7 +1,9 @@
 use std::process::Command;
 use std::env;
 
+#[cfg(not(target_os = "windows"))]
 const GIT: &str = "https://github.com/keystone-engine/keystone.git";
+#[cfg(target_os = "windows")]
 const ZIP: &str = "https://github.com/keystone-engine/keystone/releases/download/0.9.1/keystone-0.9.1-win64.zip";
 
 fn check_cmd(cmd: &str) -> bool {
@@ -37,18 +39,30 @@ fn check_dependencies() {
 
 #[cfg(target_os = "windows")]
 fn download_kstool() {
-    let mut output = Command::new("cmd.exe")
-            .args(&["powershell", "-Command", format!("Invoke-WebRequest {} -OutFile keystone.zip", ZIP)])
+    let mut output = Command::new("powershell")
+            .args(&["-Command", &format!("Invoke-WebRequest {} -OutFile keystone.zip", ZIP)])
             .output()
             .expect("failed to execute process");
     println!("{:?}", String::from_utf8_lossy(&output.stdout));
-    output = Command::new("cmd.exe")
-            .args(&["powershell", "-Command", "& { $shell = New-Object -COM Shell.Application; $target = $shell.NameSpace('keystone/'); $zip = $shell.NameSpace('keystone.zip'); $target.CopyHere($zip.Items(), 16); }"])
+    output = Command::new("powershell")
+            .args(&["-Command", "Expand-Archive -Path keystone.zip -DestinationPath ."])
             .output()
             .expect("failed to execute process");
     println!("{:?}", String::from_utf8_lossy(&output.stdout));
-    output = Command::new("cmd.exe")
-            .args(&["xcopy", "keystone/kstool.exe", format!("{}/.cargo/bin/", env::home_dir())])
+    let path = env::home_dir().unwrap();
+    let cargo_bin = &format!("{}\\.cargo\\bin\\", path.display()); // just install it to .cargo/bin for now.
+    output = Command::new("powershell")
+            .args(&["xcopy", ".\\keystone-0.9.1-win64\\kstool.exe", cargo_bin])
+            .output()
+            .expect("failed to execute process");
+    println!("{:?}", String::from_utf8_lossy(&output.stdout));
+    output = Command::new("powershell")
+            .args(&["rm", "-r", ".\\keystone-0.9.1-win64\\"])
+            .output()
+            .expect("failed to execute process");
+    println!("{:?}", String::from_utf8_lossy(&output.stdout));
+    output = Command::new("powershell")
+            .args(&["rm", ".\\keystone.zip"])
             .output()
             .expect("failed to execute process");
     println!("{:?}", String::from_utf8_lossy(&output.stdout));
