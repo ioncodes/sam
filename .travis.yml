@@ -5,11 +5,9 @@ rust:
 - nightly
 script:
 - sudo env "PATH=$PATH" cargo build --verbose --all
-- sudo env "PATH=$PATH" export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-- sudo env "PATH=$PATH" kstool x64nasm "mov rax, 3"
 - export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
-- kstool x64nasm "mov rax, 3"
-- sudo env "PATH=$PATH" cargo test --verbose --all
+- sudo env "PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH" kstool x64nasm "mov rax, 3"
+- sudo env "PATH=$PATH LD_LIBRARY_PATH=$LD_LIBRARY_PATH" cargo test --verbose --all
 matrix:
   allow_failures:
     - rust: stable
