@@ -24,6 +24,8 @@ On Linux and Mac OS X, the script will install these dependencies:
 
 Keep in mind that you only need to do these steps if you're running it for the first time.  After successfully installing the dependencies the script will clone Keystone, build it and install it. On Windows, the script will just download prebuilt binaries.  
 
+Depending on your OS you may also have to add ```/usr/local/lib``` to ```/etc/ld.so.conf``` and run ```sudo ldconfig```.
+
 You can also do all of this manually, just make sure that ```kstool``` is available in your PATH!
 
 ## Modes

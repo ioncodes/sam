@@ -5,4 +5,6 @@ rust:
   - nightly
 script:
   - sudo env "PATH=$PATH" cargo build --verbose --all
+  - export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/local/lib
+  - kstool
   - cargo test --verbose --all
