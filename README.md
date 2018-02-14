@@ -29,7 +29,7 @@ Depending on your OS you may also have to add ```/usr/local/lib``` to ```/etc/ld
 You can also do all of this manually, just make sure that ```kstool``` is available in your PATH!
 
 ## Modes
-Supported modes are (all with NASM syntax):
+Supported modes are (all with Intel syntax):
 ```
 x64
 x86

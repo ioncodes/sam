@@ -5,8 +5,8 @@ pub use mode::Mode;
 
 pub fn resolve_mode(mode: Mode) -> &'static str {
     match mode {
-        Mode::X64 => "x64nasm",
-        Mode::X86 => "x32nasm",
+        Mode::X64 => "x64",
+        Mode::X86 => "x32",
     }
 }
 
