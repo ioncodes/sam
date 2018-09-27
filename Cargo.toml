@@ -7,4 +7,4 @@ repository = "https://github.com/ioncodes/sam"
 license = "MIT"
 
 [dependencies]
-keystone = { git = "https://github.com/ioncodes/keystone-rs", branch = "fix" }
+keystone = { git = "https://github.com/tathanhdinh/keystone-rs", branch = "new_build_system" }
